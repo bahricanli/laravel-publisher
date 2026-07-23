@@ -2,6 +2,7 @@
     "name": "bahricanli/laravel-publisher",
     "description": "Connects your Laravel app to content-manager.tr — publish, update and delete posts via a secure token-based API.",
     "type": "library",
+    "version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
