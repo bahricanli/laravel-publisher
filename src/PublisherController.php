@@ -3,12 +3,11 @@
 namespace BahriCanli\Publisher;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
 class PublisherController
 {
-    public function create(Request $request): JsonResponse
+    public function create(Request $request)
     {
         $data = $request->validate([
             'title'         => 'required|string|max:500',
@@ -24,7 +23,7 @@ class PublisherController
         $config = config('bahricanli-publisher');
         $model  = $config['post_model'];
 
-        $slug = $data['slug'] ?? Str::slug($data['title']);
+        $slug  = isset($data['slug']) ? $data['slug'] : Str::slug($data['title']);
         $base  = $slug;
         $count = 1;
         while ($model::where('slug', $slug)->exists()) {
@@ -35,11 +34,11 @@ class PublisherController
             'title'              => $data['title'],
             'slug'               => $slug,
             'content'            => $data['content'],
-            'excerpt'            => $data['excerpt'] ?? null,
-            'featured_image_url' => $data['featured_image'] ?? null,
-            'status'             => $data['status'] ?? 'draft',
-            'categories'         => $data['categories'] ?? [],
-            'tags'               => $data['tags'] ?? [],
+            'excerpt'            => isset($data['excerpt']) ? $data['excerpt'] : null,
+            'featured_image_url' => isset($data['featured_image']) ? $data['featured_image'] : null,
+            'status'             => isset($data['status']) ? $data['status'] : 'draft',
+            'categories'         => isset($data['categories']) ? $data['categories'] : [],
+            'tags'               => isset($data['tags']) ? $data['tags'] : [],
         ]);
 
         return response()->json([
@@ -49,7 +48,7 @@ class PublisherController
         ], 201);
     }
 
-    public function update(Request $request): JsonResponse
+    public function update(Request $request)
     {
         $config = config('bahricanli-publisher');
         $model  = $config['post_model'];
@@ -64,7 +63,8 @@ class PublisherController
             'featured_image'=> 'nullable|url',
         ]);
 
-        $post->update(array_filter($data, fn($v) => $v !== null));
+        $filtered = array_filter($data, function ($v) { return $v !== null; });
+        $post->update($filtered);
 
         return response()->json([
             'page_id'  => $post->id,
@@ -73,7 +73,7 @@ class PublisherController
         ]);
     }
 
-    public function delete(Request $request): JsonResponse
+    public function delete(Request $request)
     {
         $config = config('bahricanli-publisher');
         $model  = $config['post_model'];
@@ -85,9 +85,9 @@ class PublisherController
         return response()->json(['deleted' => true, 'page_id' => $id]);
     }
 
-    private function postUrl(object $post, array $config): ?string
+    private function postUrl($post, $config)
     {
-        $base = rtrim($config['site_url'] ?? config('app.url'), '/');
-        return $base . '/' . ($post->slug ?? $post->id);
+        $base = rtrim(isset($config['site_url']) ? $config['site_url'] : config('app.url'), '/');
+        return $base . '/' . (isset($post->slug) ? $post->slug : $post->id);
     }
 }

@@ -4,11 +4,10 @@ namespace BahriCanli\Publisher;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class PublisherMiddleware
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
         $token = config('bahricanli-publisher.token', '');
 
@@ -16,8 +15,10 @@ class PublisherMiddleware
             return response()->json(['error' => 'CM_PUBLISHER_TOKEN tanımlı değil.'], 500);
         }
 
-        $incoming = $request->header('X-Content-Manager-Token')
-            ?? $request->input('_cm_token', '');
+        $incoming = $request->header('X-Content-Manager-Token');
+        if ($incoming === null) {
+            $incoming = $request->input('_cm_token', '');
+        }
 
         if (! hash_equals($token, (string) $incoming)) {
             return response()->json(['error' => 'Unauthorized'], 403);
