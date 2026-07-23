@@ -1,0 +1,28 @@
+<?php
+
+namespace BahriCanli\CmPublisher;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class CmPublisherMiddleware
+{
+    public function handle(Request $request, Closure $next): Response
+    {
+        $token = config('cm-publisher.token', '');
+
+        if (empty($token)) {
+            return response()->json(['error' => 'CM_PUBLISHER_TOKEN tanımlı değil.'], 500);
+        }
+
+        $incoming = $request->header('X-Content-Manager-Token')
+            ?? $request->input('_cm_token', '');
+
+        if (! hash_equals($token, (string) $incoming)) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        return $next($request);
+    }
+}
