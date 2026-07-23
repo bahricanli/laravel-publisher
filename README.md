@@ -1,4 +1,4 @@
-# CM Laravel Publisher
+# BahriCanli Laravel Publisher
 
 Laravel uygulamanızı [content-manager.tr](https://content-manager.tr) ile bağlayan pakettir. Token tabanlı API üzerinden yazı oluşturma, güncelleme ve silme işlemlerini destekler.
 
@@ -9,13 +9,13 @@ WordPress eklentisi [bahricanli-publisher](https://github.com/bahricanli/bahrica
 ## Kurulum
 
 ```bash
-composer require bahricanli/cm-laravel-publisher
+composer require bahricanli/laravel-publisher
 ```
 
 Config dosyasını yayınla:
 
 ```bash
-php artisan vendor:publish --tag=cm-publisher
+php artisan vendor:publish --tag=bahricanli-publisher
 ```
 
 ---
@@ -118,7 +118,7 @@ Site eklerken:
 ## Prefix Değiştirme
 
 ```php
-// config/cm-publisher.php
+// config/publisher.php
 'prefix' => 'api/content',
 // Endpoint'ler: /api/content/blog/create, ...
 ```

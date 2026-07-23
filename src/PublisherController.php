@@ -1,12 +1,12 @@
 <?php
 
-namespace BahriCanli\CmPublisher;
+namespace BahriCanli\Publisher;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
-class CmPublisherController
+class PublisherController
 {
     public function create(Request $request): JsonResponse
     {
@@ -21,12 +21,10 @@ class CmPublisherController
             'status'        => 'nullable|in:draft,published',
         ]);
 
-        $config = config('cm-publisher');
+        $config = config('bahricanli-publisher');
         $model  = $config['post_model'];
-        $table  = (new $model)->getTable();
 
         $slug = $data['slug'] ?? Str::slug($data['title']);
-        // Slug benzersizliği
         $base  = $slug;
         $count = 1;
         while ($model::where('slug', $slug)->exists()) {
@@ -53,7 +51,7 @@ class CmPublisherController
 
     public function update(Request $request): JsonResponse
     {
-        $config = config('cm-publisher');
+        $config = config('bahricanli-publisher');
         $model  = $config['post_model'];
 
         $id   = (int) $request->input('page_id');
@@ -77,7 +75,7 @@ class CmPublisherController
 
     public function delete(Request $request): JsonResponse
     {
-        $config = config('cm-publisher');
+        $config = config('bahricanli-publisher');
         $model  = $config['post_model'];
 
         $id   = (int) $request->input('page_id');

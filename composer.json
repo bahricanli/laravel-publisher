@@ -1,5 +1,5 @@
 {
-    "name": "bahricanli/cm-laravel-publisher",
+    "name": "bahricanli/laravel-publisher",
     "description": "Connects your Laravel app to content-manager.tr — publish, update and delete posts via a secure token-based API.",
     "type": "library",
     "license": "MIT",
@@ -17,13 +17,13 @@
     },
     "autoload": {
         "psr-4": {
-            "BahriCanli\\CmPublisher\\": "src/"
+            "BahriCanli\\Publisher\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "BahriCanli\\CmPublisher\\CmPublisherServiceProvider"
+                "BahriCanli\\Publisher\\PublisherServiceProvider"
             ]
         }
     },

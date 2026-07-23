@@ -1,16 +1,16 @@
 <?php
 
-namespace BahriCanli\CmPublisher;
+namespace BahriCanli\Publisher;
 
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CmPublisherMiddleware
+class PublisherMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $token = config('cm-publisher.token', '');
+        $token = config('bahricanli-publisher.token', '');
 
         if (empty($token)) {
             return response()->json(['error' => 'CM_PUBLISHER_TOKEN tanımlı değil.'], 500);
