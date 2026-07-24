@@ -61,6 +61,7 @@ class PublisherController
             'content'       => 'nullable|string',
             'excerpt'       => 'nullable|string',
             'featured_image'=> 'nullable|url',
+            'tags'          => 'nullable|array',
         ]);
 
         $filtered = array_filter($data, function ($v) { return $v !== null; });
