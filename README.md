@@ -27,10 +27,13 @@ php artisan vendor:publish --tag=bahricanli-publisher
 ```env
 CM_PUBLISHER_TOKEN=guclu-rastgele-token
 CM_PUBLISHER_MODEL=App\Models\Post
+CM_PUBLISHER_PAGE_MODEL=App\Models\Page
 CM_PUBLISHER_SITE_URL=https://www.example.com
 ```
 
 `CM_PUBLISHER_TOKEN` değeri content-manager.tr'deki site ayarlarındaki **Plugin Token** alanıyla eşleşmelidir.
+
+`CM_PUBLISHER_PAGE_MODEL` opsiyoneldir. Tanımlıysa `post_type=page` gönderilen istekler bu modele yazılır; tanımlı değilse sayfa istekleri de `CM_PUBLISHER_MODEL`'e düşer. Sayfalarda `categories`/`tags` yazılmaz.
 
 ---
 
@@ -46,8 +49,10 @@ Eloquent modelinizin şu alanları içermesi gerekir:
 | `excerpt` | text\|null | Kısa özet |
 | `featured_image_url` | string\|null | Öne çıkan görsel URL |
 | `status` | string | `draft` veya `published` |
-| `categories` | array (JSON cast) | Kategori listesi |
-| `tags` | array (JSON cast) | Etiket listesi |
+| `categories` | array (JSON cast) | Kategori listesi (yalnızca yazı) |
+| `tags` | array (JSON cast) | Etiket listesi (yalnızca yazı) |
+
+İstek gövdesinde opsiyonel `post_type` alanı gönderilebilir (`post` varsayılan, veya `page`). `page` için `page_model` config'i kullanılır. `update`/`delete` isteklerinde de aynı `post_type` gönderilmelidir ki doğru model üzerinde `page_id` çözülsün.
 
 ---
 
