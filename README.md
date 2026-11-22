@@ -4,9 +4,7 @@
   <a href="https://github.com/bahricanli/laravel-publisher/actions/workflows/tests.yml"><img src="https://github.com/bahricanli/laravel-publisher/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/bahricanli/laravel-publisher"><img src="https://api.scorecard.dev/projects/github.com/bahricanli/laravel-publisher/badge" alt="OpenSSF Scorecard"></a>
   <a href="https://github.com/bahricanli/laravel-publisher/releases/latest"><img src="https://img.shields.io/github/v/release/bahricanli/laravel-publisher" alt="Latest release"></a>
-  <a href="https://packagist.org/packages/bahricanli/laravel-publisher"><img src="https://img.shields.io/packagist/v/bahricanli/laravel-publisher" alt="Packagist version"></a>
   <a href="https://packagist.org/packages/bahricanli/laravel-publisher"><img src="https://img.shields.io/packagist/dt/bahricanli/laravel-publisher" alt="Packagist downloads"></a>
-  <a href="https://packagist.org/packages/bahricanli/laravel-publisher"><img src="https://img.shields.io/packagist/favers/bahricanli/laravel-publisher" alt="Packagist favorites"></a>
   <a href="https://www.php.net"><img src="https://img.shields.io/badge/PHP-5.6%2B-777BB4?logo=php&logoColor=white" alt="PHP 5.6+"></a>
   <a href="https://laravel.com"><img src="https://img.shields.io/badge/Laravel-5.3%2B-FF2D20?logo=laravel&logoColor=white" alt="Laravel 5.3+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="GPL-3.0"></a>
