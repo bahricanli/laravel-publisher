@@ -6,6 +6,12 @@ proje [Semantic Versioning](https://semver.org/lang/tr/) kullanır.
 
 ## [Unreleased]
 
+### Added
+
+- `v*` tag'i push edildiğinde GitHub Release'i otomatik oluşturan
+  `release.yml` workflow'u (commit'lerden not üretir).
+- Mevcut `v1.0.0`–`v1.1.2` tag'leri için release notları yayınlandı.
+
 ## [1.1.2] - 2026-11-22
 
 ### Added
