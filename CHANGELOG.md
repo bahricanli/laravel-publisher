@@ -6,6 +6,24 @@ proje [Semantic Versioning](https://semver.org/lang/tr/) kullanır.
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-11-22
+
+### Added
+
+- PHPUnit + Orchestra Testbench test paketi (29 test): middleware token
+  doğrulaması, create/update/delete akışları, slug çakışması, `post_type`
+  yönlendirmesi, doğrulama hataları ve route prefix'i.
+- `phpunit.xml`, `tests/` ve `composer test` script'i.
+- CI artık testleri PHP 8.2/8.3/8.4 üzerinde çalıştırıyor.
+
+### Fixed
+
+- `update` endpoint'i `featured_image` alanını `featured_image_url` kolonuna
+  yazmıyordu; görsel güncellemesi sessizce kayboluyordu.
+- `vendor:publish` config dosyasını `config/publisher.php` olarak yayınlıyordu,
+  paket ise `bahricanli-publisher` anahtarını okuyordu. Yayınlanan dosya
+  `config/bahricanli-publisher.php` oldu; prefix gibi ayarlar artık etkili.
+
 ## [1.1.1] - 2026-11-22
 
 ### Changed
@@ -55,7 +73,8 @@ proje [Semantic Versioning](https://semver.org/lang/tr/) kullanır.
 
 - İlk sürüm: content-manager.tr için create / update / delete endpoint'leri.
 
-[Unreleased]: https://github.com/bahricanli/laravel-publisher/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/bahricanli/laravel-publisher/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/bahricanli/laravel-publisher/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/bahricanli/laravel-publisher/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/bahricanli/laravel-publisher/compare/v1.0.4...v1.1.0
 [1.0.4]: https://github.com/bahricanli/laravel-publisher/compare/v1.0.3...v1.0.4

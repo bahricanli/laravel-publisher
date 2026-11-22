@@ -137,10 +137,21 @@ Site eklerken:
 ## Prefix Değiştirme
 
 ```php
-// config/publisher.php
+// config/bahricanli-publisher.php
 'prefix' => 'api/content',
 // Endpoint'ler: /api/content/blog/create, ...
 ```
+
+---
+
+## Testler
+
+```bash
+composer install
+composer test
+```
+
+Test paketi [Orchestra Testbench](https://packages.tools/testbench) kullanır ve PHP 8.2+ üzerinde çalışır. Veritabanı gerektirmez; SQLite in-memory kullanılır.
 
 ---
 

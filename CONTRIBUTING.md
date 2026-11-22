@@ -6,12 +6,16 @@ edilir.
 ## Akış
 
 1. Depoyu forklayın ve `main` dalından yeni bir dal açın.
-2. Gerekiyorsa değişikliğinizi test edin; en azından PHP sözdizimini kontrol edin:
+2. Gerekiyorsa değişikliğinizi test edin:
 
    ```bash
-   find src routes config -name '*.php' -print0 | xargs -0 -n1 php -l
+   composer install
+   composer test
+   find src routes config tests -name '*.php' -print0 | xargs -0 -n1 php -l
    composer validate --no-check-publish
    ```
+
+   Yeni davranış ekliyorsanız `tests/` altına test ekleyin.
 
 3. Commit mesajlarında [Conventional Commits](https://www.conventionalcommits.org/)
    biçimini kullanın (`feat:`, `fix:`, `chore:` ...).

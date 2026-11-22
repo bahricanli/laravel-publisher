@@ -77,6 +77,13 @@ class PublisherController
         $post = $model::findOrFail($id);
 
         $filtered = array_filter($data, function ($v) { return $v !== null; });
+
+        // İstek gövdesindeki alan adı ile model kolonu farklı.
+        if (array_key_exists('featured_image', $filtered)) {
+            $filtered['featured_image_url'] = $filtered['featured_image'];
+            unset($filtered['featured_image']);
+        }
+
         $post->update($filtered);
 
         return response()->json([

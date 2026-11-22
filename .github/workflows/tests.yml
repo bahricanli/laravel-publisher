@@ -1,6 +1,7 @@
 name: Tests
 
-# PHP syntax check and Composer manifest validation across supported runtimes.
+# PHPUnit suite (via Orchestra Testbench) plus PHP syntax and Composer
+# manifest validation across supported runtimes.
 on:
   push:
     branches: [main]
@@ -12,8 +13,8 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    name: Lint (PHP ${{ matrix.php }})
+  test:
+    name: Tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -29,10 +30,17 @@ jobs:
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: ${{ matrix.php }}
+          extensions: mbstring, pdo, pdo_sqlite, sqlite3
           coverage: none
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction --no-progress
 
       - name: Validate composer.json
         run: composer validate --no-check-publish
 
       - name: Lint PHP files
-        run: find src routes config -name '*.php' -print0 | xargs -0 -n1 php -l
+        run: find src routes config tests -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: Run tests
+        run: vendor/bin/phpunit --no-coverage

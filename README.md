@@ -137,10 +137,21 @@ When adding a site:
 ## Changing the Prefix
 
 ```php
-// config/publisher.php
+// config/bahricanli-publisher.php
 'prefix' => 'api/content',
 // Endpoints: /api/content/blog/create, ...
 ```
+
+---
+
+## Testing
+
+```bash
+composer install
+composer test
+```
+
+The suite uses [Orchestra Testbench](https://packages.tools/testbench) and runs on PHP 8.2+. It requires no database; SQLite in-memory is used.
 
 ---
 

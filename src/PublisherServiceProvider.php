@@ -9,7 +9,7 @@ class PublisherServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/publisher.php' => config_path('publisher.php'),
+            __DIR__ . '/../config/publisher.php' => config_path('bahricanli-publisher.php'),
         ], 'bahricanli-publisher');
 
         $this->mergeConfigFrom(__DIR__ . '/../config/publisher.php', 'bahricanli-publisher');
