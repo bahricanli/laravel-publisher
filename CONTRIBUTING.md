@@ -20,6 +20,8 @@ edilir.
 3. Commit mesajlarında [Conventional Commits](https://www.conventionalcommits.org/)
    biçimini kullanın (`feat:`, `fix:`, `chore:` ...).
 4. `main` dalına pull request açın. PR'lar squash ile birleştirilir.
+5. Sürüm çıkarmak için `git tag -a vX.Y.Z -m "..."` oluşturup `git push origin vX.Y.Z`
+   çalıştırın. `Release` workflow'u GitHub Release'i otomatik oluşturur.
 
 ## Lisans
 
