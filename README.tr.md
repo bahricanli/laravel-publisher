@@ -73,12 +73,20 @@ Eloquent modelinizin şu alanları içermesi gerekir:
 
 ## Çok dilli yayınlama
 
+Çok dilli yayınlama **1.2.0** sürümünden itibaren kullanılabilir. Mevcut kurulumu güncellemek için:
+
+```bash
+composer require "bahricanli/laravel-publisher:^1.2"
+```
+
 `CM_PUBLISHER_LOCALE_COLUMN` ile yazının dilini saklayan model kolonunu,
 `CM_PUBLISHER_LOCALES` ile dilleri virgülle ayrılmış biçimde belirtin (ör. `tr,en`).
 Ayrı satırlardaki dil sürümlerini bağlamak için isteğe bağlı
 `CM_PUBLISHER_TRANSLATION_GROUP_COLUMN` ayarını kullanın. Ayarladığınız kolonları
 hedef tabloya ve modelin `$fillable` listesine ekleyin. Hedef rotalarda dil
 segmenti varsa `CM_PUBLISHER_SITE_URL` içinde `{locale}` kullanabilirsiniz.
+
+Hedef model ve yapılandırma güncellendikten sonra sitenin yapılandırma ve rota önbelleklerini yenileyin. Content Manager’da varsayılan ve ek içerik dillerini seçin.
 
 Kimlik doğrulaması gerektiren `GET /cm/blog/capabilities` isteği desteklenen
 `locales` listesini döndürür. Oluşturma ve güncelleme istekleri `locale` ile
@@ -91,6 +99,7 @@ Tüm isteklerde `X-Content-Manager-Token` header'ı veya `_cm_token` POST parame
 
 | Method | URL | Açıklama |
 |---|---|---|
+| GET | `/cm/blog/capabilities` | Desteklenen içerik dillerini listele |
 | POST | `/cm/blog/create` | Yeni yazı oluştur |
 | POST | `/cm/blog/update` | Yazıyı güncelle (`page_id` parametresi ile) |
 | POST | `/cm/blog/delete` | Yazıyı sil (`page_id` parametresi ile) |

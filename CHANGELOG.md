@@ -6,8 +6,13 @@ proje [Semantic Versioning](https://semver.org/lang/tr/) kullanır.
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-23
+
 ### Added
 
+- Hedef Laravel sitesinde yapılandırılabilen içerik dili ve isteğe bağlı çeviri grubu.
+- Desteklenen dilleri bildiren, token doğrulamalı `GET /cm/blog/capabilities` isteği.
+- Yazı oluşturma ve güncellemede dil kaydı, dil bazlı URL ve dil doğrulaması.
 - `v*` tag'i push edildiğinde GitHub Release'i otomatik oluşturan
   `release.yml` workflow'u (commit'lerden not üretir).
 - Mevcut `v1.0.0`–`v1.1.2` tag'leri için release notları yayınlandı.
@@ -79,7 +84,8 @@ proje [Semantic Versioning](https://semver.org/lang/tr/) kullanır.
 
 - İlk sürüm: content-manager.tr için create / update / delete endpoint'leri.
 
-[Unreleased]: https://github.com/bahricanli/laravel-publisher/compare/v1.1.2...HEAD
+[Unreleased]: https://github.com/bahricanli/laravel-publisher/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/bahricanli/laravel-publisher/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/bahricanli/laravel-publisher/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/bahricanli/laravel-publisher/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/bahricanli/laravel-publisher/compare/v1.0.4...v1.1.0
