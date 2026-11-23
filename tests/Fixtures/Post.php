@@ -19,6 +19,8 @@ class Post extends Model
         'status',
         'categories',
         'tags',
+        'language',
+        'translation_key',
     ];
 
     protected $casts = [

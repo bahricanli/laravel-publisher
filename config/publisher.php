@@ -27,4 +27,10 @@ return [
      * API prefix. Endpoint'ler: /{prefix}/blog/create vb.
      */
     'prefix' => 'cm',
+
+    // Enable multilingual publishing by mapping content to a model column
+    // and listing the locale codes accepted by the destination application.
+    'locale_column' => env('CM_PUBLISHER_LOCALE_COLUMN', null),
+    'locales' => array_values(array_filter(array_map('trim', explode(',', env('CM_PUBLISHER_LOCALES', ''))))),
+    'translation_group_column' => env('CM_PUBLISHER_TRANSLATION_GROUP_COLUMN', null),
 ];

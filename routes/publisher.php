@@ -9,12 +9,14 @@ $prefix = config('bahricanli-publisher.prefix', 'cm');
 // Laravel 5.x uses string-based controller syntax; 6+ supports array syntax
 if (version_compare(app()->version(), '6.0', '>=')) {
     Route::group(['prefix' => $prefix, 'middleware' => [PublisherMiddleware::class]], function () {
+        Route::get('blog/capabilities', [PublisherController::class, 'capabilities']);
         Route::post('blog/create', [PublisherController::class, 'create']);
         Route::post('blog/update', [PublisherController::class, 'update']);
         Route::post('blog/delete', [PublisherController::class, 'delete']);
     });
 } else {
     Route::group(['prefix' => $prefix, 'middleware' => [PublisherMiddleware::class]], function () {
+        Route::get('blog/capabilities', 'BahriCanli\Publisher\PublisherController@capabilities');
         Route::post('blog/create', 'BahriCanli\Publisher\PublisherController@create');
         Route::post('blog/update', 'BahriCanli\Publisher\PublisherController@update');
         Route::post('blog/delete', 'BahriCanli\Publisher\PublisherController@delete');

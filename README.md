@@ -71,6 +71,19 @@ The request body may include an optional `post_type` field (`post` by default, o
 
 ---
 
+## Multilingual publishing
+
+Set `CM_PUBLISHER_LOCALE_COLUMN` to the model column storing each row's language
+and `CM_PUBLISHER_LOCALES` to a comma-separated list such as `tr,en`. To link language
+versions stored as separate rows, set `CM_PUBLISHER_TRANSLATION_GROUP_COLUMN` to a
+second column. Add the configured columns to the destination table and the model's
+`$fillable` list. If public routes use a language segment, include `{locale}` in
+`CM_PUBLISHER_SITE_URL`, for example `https://example.com/{locale}/blog`.
+
+The authenticated `GET /cm/blog/capabilities` endpoint returns the configured
+`locales`. Create and update requests accept `locale` and `translation_group`
+and return the stored `locale` and `page_url`.
+
 ## Endpoints
 
 Every request must send either the `X-Content-Manager-Token` header or the `_cm_token` POST parameter.

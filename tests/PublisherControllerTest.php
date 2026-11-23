@@ -36,6 +36,34 @@ class PublisherControllerTest extends TestCase
         ]);
     }
 
+    public function test_multilingual_api_stores_locale_and_group_and_returns_localized_url()
+    {
+        config([
+            'bahricanli-publisher.locale_column' => 'language',
+            'bahricanli-publisher.locales' => ['tr', 'en'],
+            'bahricanli-publisher.translation_group_column' => 'translation_key',
+            'bahricanli-publisher.site_url' => 'https://example.com/{locale}/blog',
+        ]);
+
+        $this->getJson('/cm/blog/capabilities', ['X-Content-Manager-Token' => 'test-token'])
+            ->assertExactJson(['locales' => ['tr', 'en']]);
+
+        $this->create(['locale' => 'en', 'translation_group' => '42', 'title' => 'English title'])
+            ->assertCreated()
+            ->assertJson(['locale' => 'en', 'page_url' => 'https://example.com/en/blog/english-title']);
+
+        $post = Post::firstOrFail();
+        $this->assertSame('42', $post->translation_key);
+
+        $this->update(['page_id' => $post->id, 'locale' => 'tr', 'translation_group' => '42'])
+            ->assertOk()
+            ->assertJson(['locale' => 'tr', 'page_url' => 'https://example.com/tr/blog/english-title']);
+        $this->assertSame('tr', $post->fresh()->language);
+
+        $this->create(['locale' => 'de', 'translation_group' => '42'])->assertUnprocessable();
+        $this->assertSame(1, Post::count());
+    }
+
     // ---------------------------------------------------------------- create
 
     public function test_create_stores_a_draft_post_and_returns_its_url()

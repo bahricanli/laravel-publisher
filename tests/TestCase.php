@@ -36,6 +36,8 @@ abstract class TestCase extends TestbenchTestCase
             $table->string('status')->default('draft');
             $table->text('categories')->nullable();
             $table->text('tags')->nullable();
+            $table->string('language')->nullable();
+            $table->string('translation_key')->nullable();
         });
 
         Schema::create('pages', function (Blueprint $table) {

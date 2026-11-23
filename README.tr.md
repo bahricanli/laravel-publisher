@@ -71,6 +71,20 @@ Eloquent modelinizin şu alanları içermesi gerekir:
 
 ---
 
+## Çok dilli yayınlama
+
+`CM_PUBLISHER_LOCALE_COLUMN` ile yazının dilini saklayan model kolonunu,
+`CM_PUBLISHER_LOCALES` ile dilleri virgülle ayrılmış biçimde belirtin (ör. `tr,en`).
+Ayrı satırlardaki dil sürümlerini bağlamak için isteğe bağlı
+`CM_PUBLISHER_TRANSLATION_GROUP_COLUMN` ayarını kullanın. Ayarladığınız kolonları
+hedef tabloya ve modelin `$fillable` listesine ekleyin. Hedef rotalarda dil
+segmenti varsa `CM_PUBLISHER_SITE_URL` içinde `{locale}` kullanabilirsiniz.
+
+Kimlik doğrulaması gerektiren `GET /cm/blog/capabilities` isteği desteklenen
+`locales` listesini döndürür. Oluşturma ve güncelleme istekleri `locale` ile
+`translation_group` alanlarını kabul eder. Başarı yanıtında kaydedilen
+`locale` ve `page_url` bulunur.
+
 ## Endpoint'ler
 
 Tüm isteklerde `X-Content-Manager-Token` header'ı veya `_cm_token` POST parametresi gönderilmelidir.
